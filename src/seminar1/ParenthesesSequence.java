@@ -7,22 +7,32 @@ import java.io.InputStreamReader;
 /**
  * 1. пустая строка — правильная скобочная последовательность;
  * 2. правильная скобочная последовательность,
- *      взятая в скобки одного типа — правильная скобочная последовательность;
+ * взятая в скобки одного типа — правильная скобочная последовательность;
  * 3. правильная скобочная последовательность,
- *      к которой приписана слева или справа правильная скобочная последовательность
- *      — тоже правильная скобочная последовательность.
+ * к которой приписана слева или справа правильная скобочная последовательность
+ * — тоже правильная скобочная последовательность.
  */
 public class ParenthesesSequence {
 
     private static final String QUIT = "q";
 
-    private static final char LEFT_PAREN     = '(';
-    private static final char RIGHT_PAREN    = ')';
+    private static final char LEFT_PAREN = '(';
+    private static final char RIGHT_PAREN = ')';
 
     // sequence = "()()" | "((((" | ")()(" | ...
     private static boolean isBalanced(String sequence) {
-        /* TODO: implement it */
-        return false;
+        int k = 0;
+        for (char c : sequence.toCharArray()) {
+            if (c == LEFT_PAREN) {
+                k++;
+            } else if (c == RIGHT_PAREN) {
+                k--;
+            }
+            if (k < 0) {
+                return false;
+            }
+        }
+        return k == 0;
     }
 
     public static void main(String[] args) {

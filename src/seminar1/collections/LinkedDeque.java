@@ -3,44 +3,115 @@ package seminar1.collections;
 import java.util.Iterator;
 
 public class LinkedDeque<Item> implements IDeque<Item> {
+    private Node<Item> head;
+    private Node<Item> tail;
+    private int size;
+
+    public LinkedDeque() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
 
     @Override
     public void pushFront(Item item) {
-        /* TODO: implement it */
+        Node<Item> h = head;
+        Node<Item> newNode = new Node<>(item, null, h);
+        head = newNode;
+        if (h == null) {
+            tail = newNode;
+        } else {
+            h.prev = newNode;
+        }
+        size++;
     }
 
     @Override
     public void pushBack(Item item) {
-        /* TODO: implement it */
+        Node<Item> t = tail;
+        Node<Item> newNode = new Node<>(item, t, null);
+        tail = newNode;
+        if (t == null) {
+            head = newNode;
+        } else {
+            t.next = newNode;
+        }
+        size++;
     }
 
     @Override
     public Item popFront() {
-        /* TODO: implement it */
+        if (head != null) {
+            Item item = head.item;
+            Node<Item> next = head.next;
+            if (next == null) {
+                tail = null;
+            } else {
+                next.prev = null;
+            }
+            head = next;
+            size--;
+            return item;
+        }
         return null;
     }
 
     @Override
     public Item popBack() {
-        /* TODO: implement it */
+        if (tail != null) {
+            Item item = tail.item;
+            Node<Item> prev = tail.prev;
+            if (prev == null) {
+                head = null;
+            } else {
+                prev.next = null;
+            }
+            tail = prev;
+            size--;
+            return item;
+        }
         return null;
     }
 
     @Override
     public boolean isEmpty() {
-        /* TODO: implement it */
-        return false;
+        return size == 0;
     }
 
     @Override
     public int size() {
-        /* TODO: implement it */
-        return 0;
+        return size;
     }
 
     @Override
     public Iterator<Item> iterator() {
-        /* TODO: implement it */
-        return null;
+        return new LinkedDequeIterator();
+    }
+
+    private class Node<Item> {
+        Item item;
+        Node<Item> next;
+        Node<Item> prev;
+
+        public Node(Item item, Node<Item> prev, Node<Item> next) {
+            this.item = item;
+            this.prev = prev;
+            this.next = next;
+        }
+    }
+
+    private class LinkedDequeIterator implements Iterator<Item> {
+        Node<Item> cur = new Node<>(null, null, head);
+
+        @Override
+        public boolean hasNext() {
+            return cur.next != null;
+        }
+
+        @Override
+        public Item next() {
+            cur = cur.next;
+            return cur.item;
+        }
     }
 }
