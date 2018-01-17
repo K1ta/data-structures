@@ -3,48 +3,20 @@ package seminar1.collections;
 import java.util.Iterator;
 
 public class LinkedQueue<Item> implements IQueue<Item> {
+
     // -> [tail -> .. -> .. -> head] ->
     private Node<Item> head;
     private Node<Item> tail;
     private int size;
 
-    public LinkedQueue() {
-        head = null;
-        tail = null;
-        size = 0;
-    }
-
-
     @Override
     public void enqueue(Item item) {
-        Node<Item> t = tail;
-        Node<Item> newNode = new Node<>(item, t);
-        tail = newNode;
-        if (t == null) {
-            head = newNode;
-        }
-        size++;
+        /* TODO: implement it */
     }
 
     @Override
     public Item dequeue() {
-        if (head != null) {
-            Item item = head.item;
-            if (size == 1) {
-                head = null;
-                tail = null;
-                size = 0;
-                return item;
-            }
-            Node<Item> prev = tail;
-            while (prev.next != head) {
-                prev = prev.next;
-            }
-            prev.next = null;
-            head = prev;
-            size--;
-            return item;
-        }
+        /* TODO: implement it */
         return null;
     }
 
@@ -64,16 +36,17 @@ public class LinkedQueue<Item> implements IQueue<Item> {
     }
 
     private class LinkedQueueIterator implements Iterator<Item> {
-        Node<Item> cur = new Node<>(null, tail);
 
         @Override
         public boolean hasNext() {
-            return size > 0;
+            /* TODO: implement it */
+            return false;
         }
 
         @Override
         public Item next() {
-            return dequeue();
+            /* TODO: implement it */
+            return null;
         }
 
     }

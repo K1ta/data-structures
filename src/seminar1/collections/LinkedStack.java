@@ -7,27 +7,14 @@ public class LinkedStack<Item> implements IStack<Item> {
     private Node<Item> head;
     private int size;
 
-    public LinkedStack() {
-        head = null;
-        size = 0;
-    }
-
     @Override
     public void push(Item item) {
-        Node<Item> h = head;
-        Node<Item> newNode = new Node(item, h);
-        head = newNode;
-        size++;
+        /* TODO: implement it */
     }
 
     @Override
     public Item pop() {
-        if (size > 0) {
-            Node<Item> node = head;
-            head = head.next;
-            size--;
-            return node.item;
-        }
+        /* TODO: implement it */
         return null;
     }
 
@@ -47,17 +34,17 @@ public class LinkedStack<Item> implements IStack<Item> {
     }
 
     private class LinkedStackIterator implements Iterator<Item> {
-        Node<Item> cur = new Node(null, head);
 
         @Override
         public boolean hasNext() {
-            return cur.next != null;
+            /* TODO: implement it */
+            return false;
         }
 
         @Override
         public Item next() {
-            cur = cur.next;
-            return cur.item;
+            /* TODO: implement it */
+            return null;
         }
 
     }

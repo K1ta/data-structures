@@ -25,36 +25,9 @@ public class ParenthesesSequenceExt {
 
     // sequence = "()()" | "(({}[]))[[[" | "{}" | ...
     private static boolean isBalanced(String sequence) {
-        int k1 = 0, k2 = 0, k3 = 0;
-        for (char c : sequence.toCharArray()) {
-            switch (c) {
-                case LEFT_BRACE:
-                    k1++;
-                    break;
-                case LEFT_BRACKET:
-                    k2++;
-                    break;
-                case LEFT_PAREN:
-                    k3++;
-                    break;
-                case RIGHT_BRACE:
-                    k1--;
-                    break;
-                case RIGHT_BRACKET:
-                    k2--;
-                    break;
-                case RIGHT_PAREN:
-                    k3--;
-                    break;
-            }
-            if (k1 < 0 || k2 < 0 || k3 < 0) {
-                return false;
-            }
-        }
-        return k1 == 0 && k2 == 0 && k3 == 0;
+        /* TODO: implement it */
+        return false;
     }
-
-
 
     public static void main(String[] args) {
         try (BufferedReader lineReader = new BufferedReader(new InputStreamReader(System.in))) {
