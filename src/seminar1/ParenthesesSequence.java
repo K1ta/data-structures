@@ -21,8 +21,18 @@ public class ParenthesesSequence {
 
     // sequence = "()()" | "((((" | ")()(" | ...
     private static boolean isBalanced(String sequence) {
-        /* TODO: implement it */
-        return false;
+        int k = 0;
+        for (char c : sequence.toCharArray()) {
+            if (c == LEFT_PAREN) {
+                k++;
+            } else if (c == RIGHT_PAREN) {
+                k--;
+            }
+            if (k < 0) {
+                return false;
+            }
+        }
+        return k == 0;
     }
 
     public static void main(String[] args) {

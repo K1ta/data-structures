@@ -17,13 +17,25 @@ public class ArrayStack<Item> implements IStack<Item> {
 
     @Override
     public void push(Item item) {
-        /* TODO: implement it */
+        elementData[size] = item;
+        size++;
+        if (size == elementData.length) {
+            grow();
+        }
     }
 
     @Override
     public Item pop() {
-        /* TODO: implement it */
-        return null;
+        if (size == 0) {
+            return null;
+        }
+        Item item = elementData[size - 1];
+        elementData[size - 1] = null;
+        size--;
+        if (elementData.length / size >= 4) {
+            shrink();
+        }
+        return item;
     }
 
     @Override
@@ -37,19 +49,16 @@ public class ArrayStack<Item> implements IStack<Item> {
     }
 
     private void grow() {
-        /**
-         * TODO: implement it
-         * Если массив заполнился,
-         * то увеличить его размер в полтора раз
-         */
+        int newCapacity = (int) (elementData.length * 1.5f);
+        if (newCapacity < 0) {
+            throw new IllegalStateException("Sorry, ArrayStack too big");
+        }
+        changeCapacity(newCapacity);
     }
 
     private void shrink() {
-        /**
-         * TODO: implement it
-         * Если количество элементов в четыре раза меньше,
-         * то уменьшить его размер в два раза
-         */
+        int newCapacity = Math.max(DEFAULT_CAPACITY, elementData.length >> 1);
+        changeCapacity(newCapacity);
     }
 
     private void changeCapacity(int newCapacity) {
